@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajan Kumar — UX Designer</title>
+    <meta name="description"
+        content="UX Designer at Polestar Analytics — designing enterprise AI and analytics platforms that make data actually usable.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,500;1,600&family=Sora:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.0">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-line"></div>
+            <div class="preloader-line"></div>
+            <div class="preloader-line"></div>
+        </div>
+        <p class="preloader-text">Rajan Kumar</p>
+    </div>
+
+    <!-- Cursor Follower -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Navigation -->
+    <div class="navbar-wrapper">
+        <nav class="navbar" id="navbar">
+            <a href="#" class="nav-logo" id="navLogo">Rajan.<span>design</span></a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="nav-link" data-nav>
+                    <span class="nav-link-text">
+                        <span class="nav-link-default">About</span>
+                        <span class="nav-link-hover">About</span>
+                    </span>
+                </a>
+                <a href="#playground-showcase" class="nav-link" data-nav>
+                    <span class="nav-link-text">
+                        <span class="nav-link-default">Showcase</span>
+                        <span class="nav-link-hover">Showcase</span>
+                    </span>
+                </a>
+                <a href="#work" class="nav-link" data-nav>
+                    <span class="nav-link-text">
+                        <span class="nav-link-default">Work</span>
+                        <span class="nav-link-hover">Work</span>
+                    </span>
+                </a>
+                <a href="#contact" class="nav-link" data-nav>
+                    <span class="nav-link-text">
+                        <span class="nav-link-default">Contact</span>
+                        <span class="nav-link-hover">Contact</span>
+                    </span>
+                </a>
+            </div>
+            <div class="nav-right" style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-pill-toggle" id="themePillToggle" aria-label="Toggle Theme">
+                    <div class="toggle-track">
+                        <span class="toggle-text text-dark">Dark</span>
+                        <span class="toggle-text text-light">Light</span>
+                        <div class="toggle-knob">
+                            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5" />
+                                <line x1="12" y1="1" x2="12" y2="3" />
+                                <line x1="12" y1="21" x2="12" y2="23" />
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                                <line x1="1" y1="12" x2="3" y2="12" />
+                                <line x1="21" y1="12" x2="23" y2="12" />
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                            </svg>
+                            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+                <a href="/resume.pdf" class="nav-cta-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    Download CV
+                </a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="#about" class="mobile-link" data-mobile-nav>About</a>
+            <a href="#playground-showcase" class="mobile-link" data-mobile-nav>Showcase</a>
+            <a href="#work" class="mobile-link" data-mobile-nav>Work</a>
+            <a href="#contact" class="mobile-link" data-mobile-nav>Contact</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <!-- Grid bg -->
+        <div class="hero-grid-bg"></div>
+        <!-- Glows -->
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+
+        <!-- FULL-SCREEN 3D CANVAS FOR SCATTER EFFECT -->
+        <div class="cube-container" id="cubeContainer"></div>
+
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1 class="hero-headline" id="heroHeadline">
+                    <span class="hero-word">Hi, I'm Rajan.</span>
+                    <span class="hero-word">I am a <span class="typing-text" id="typingText"></span><span
+                            class="type-cursor">|</span></span>
+                </h1>
+
+                <div class="hero-bio">
+                    <div class="hero-avatar"
+                        style="width:72px;height:72px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:20px;border:2px solid var(--border);flex-shrink:0;">
+                        RK</div>
+                    <div class="hero-bio-content">
+                        <p id="heroBioText">Hi! I'm <strong>Rajan Kumar</strong>, a Product Designer from India, transforming complex problems into clean, intuitive experiences that just make sense.</p>
+                        
+                        <div class="hero-ai-pill-wrapper">
+                            <div class="hero-ai-pill" id="heroAiPill">
+                                <div class="ai-pill-idle" id="aiPillIdle">
+                                    <span style="font-size:12px;">✨</span>
+                                    <span>Ask AI</span>
+                                </div>
+                                <div class="ai-pill-active" id="aiPillActive">
+                                    <input type="text" id="heroAiInput" placeholder="Ask about my projects, process..." autocomplete="off">
+                                    <button id="heroAiSubmit" aria-label="Send">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <button id="heroAiReset" class="hero-ai-reset hidden" aria-label="Reset Bio">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                    <path d="M3 3v5h5"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-hint">
+                    <span>Click to <em>interact</em></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photographer Cutout & Camera Interaction -->
+        <div class="hero-photographer-wrap" id="photographerWrap">
+            <img src="Photographer/Photographer 1.png" alt="Photographer" class="hero-photographer"
+                id="photographerImg">
+            <div class="photographer-tooltip">Take a snap</div>
+        </div>
+
+        <!-- Glassmorphism overlay -->
+        <div class="camera-overlay" id="cameraOverlay"></div>
+
+        <!-- Centered Camera UI that pops out -->
+        <div class="large-camera-modal" id="largeCamera">
+            <div class="large-camera-container" id="cameraTrigger">
+                <img src="Photographer/camera 1.png" alt="Camera Layout" class="large-camera-img">
+                <div class="camera-lens-external">
+                    <video id="cameraVideo" autoplay playsinline muted></video>
+                    <div class="lens-click-hint">Snap!</div>
+                </div>
+            </div>
+            <div class="modal-close-hint">Click outside to close</div>
+        </div>
+
+        <!-- Headphones Trigger -->
+        <div class="hero-headphones-wrap" id="headphonesWrap">
+            <img src="Music Player/Headphones.png" alt="Headphones" class="hero-headphones">
+            <div class="headphones-tooltip">Vibe with songs</div>
+        </div>
+
+        <!-- Robot Avatar Trigger -->
+        <div class="hero-robot-wrap" id="robotWrap">
+            <div class="robot-sprite current-robot" style="background-image: url('Robot/R1.png');"></div>
+            <div class="robot-tooltip">Change mood</div>
+        </div>
+
+        <!-- Robot Selection Popover -->
+        <div class="robot-overlay" id="robotOverlay"></div>
+        <div class="robot-selector-modal" id="robotSelectorModal">
+            <div class="robot-grid">
+                <div class="robot-option" data-face="R1" style="background-image: url('Robot/R1.png');"></div>
+                <div class="robot-option" data-face="R2" style="background-image: url('Robot/R2.png');"></div>
+                <div class="robot-option" data-face="R3" style="background-image: url('Robot/R3.png');"></div>
+                <div class="robot-option" data-face="R4" style="background-image: url('Robot/R4.png');"></div>
+                <div class="robot-option" data-face="R5" style="background-image: url('Robot/R5.png');"></div>
+                <div class="robot-option" data-face="R6" style="background-image: url('Robot/R6.png');"></div>
+                <div class="robot-option" data-face="R7" style="background-image: url('Robot/R7.png');"></div>
+                <div class="robot-option" data-face="R8" style="background-image: url('Robot/R8.png');"></div>
+                <div class="robot-option" data-face="R9" style="background-image: url('Robot/R9.png');"></div>
+            </div>
+        </div>
+
+        <!-- Quote Trigger (bottom-right) -->
+        <div class="hero-quote-wrap" id="quoteWrap">
+            <img src="Quotes/q1.png" alt="Quote" class="quote-display current-quote" id="currentQuoteImg">
+            <div class="quote-tooltip">Change quote</div>
+        </div>
+
+        <!-- Quote Selection Popover -->
+        <div class="quote-overlay" id="quoteOverlay"></div>
+        <div class="quote-selector-modal" id="quoteSelectorModal">
+            <div class="quote-grid">
+                <div class="quote-option" data-quote="q1"><img src="Quotes/q1.png" alt="Quote 1"></div>
+                <div class="quote-option" data-quote="q2"><img src="Quotes/q2.png" alt="Quote 2"></div>
+                <div class="quote-option" data-quote="q3"><img src="Quotes/q3.png" alt="Quote 3"></div>
+                <div class="quote-option" data-quote="q4"><img src="Quotes/q4.png" alt="Quote 4"></div>
+                <div class="quote-option" data-quote="q5"><img src="Quotes/q5.png" alt="Quote 5"></div>
+                <div class="quote-option" data-quote="q6"><img src="Quotes/q6.png" alt="Quote 6"></div>
+                <div class="quote-option" data-quote="q7"><img src="Quotes/q7.png" alt="Quote 7"></div>
+                <div class="quote-option" data-quote="q8"><img src="Quotes/q8.png" alt="Quote 8"></div>
+                <div class="quote-option" data-quote="q9"><img src="Quotes/q9.png" alt="Quote 9"></div>
+                <div class="quote-option" data-quote="q10"><img src="Quotes/q10.png" alt="Quote 10"></div>
+                <div class="quote-option" data-quote="q11"><img src="Quotes/q11.png" alt="Quote 11"></div>
+                <div class="quote-option" data-quote="q12"><img src="Quotes/q12.png" alt="Quote 12"></div>
+                <div class="quote-option" data-quote="q13"><img src="Quotes/q13.png" alt="Quote 13"></div>
+                <div class="quote-option" data-quote="q14"><img src="Quotes/q14.png" alt="Quote 14"></div>
+                <div class="quote-option" data-quote="q15"><img src="Quotes/q15.png" alt="Quote 15"></div>
+                <div class="quote-option" data-quote="q16"><img src="Quotes/q16.png" alt="Quote 16"></div>
+                <div class="quote-option" data-quote="q17"><img src="Quotes/q17.png" alt="Quote 17"></div>
+                <div class="quote-option" data-quote="q18"><img src="Quotes/q18.png" alt="Quote 18"></div>
+                <div class="quote-option" data-quote="q19"><img src="Quotes/q19.png" alt="Quote 19"></div>
+                <div class="quote-option" data-quote="q20"><img src="Quotes/q20.png" alt="Quote 20"></div>
+                <div class="quote-option" data-quote="q21"><img src="Quotes/q21.png" alt="Quote 21"></div>
+                <div class="quote-option" data-quote="q22"><img src="Quotes/q22.png" alt="Quote 22"></div>
+                <div class="quote-option" data-quote="q23"><img src="Quotes/q23.png" alt="Quote 23"></div>
+                <div class="quote-option" data-quote="q24"><img src="Quotes/q24.png" alt="Quote 24"></div>
+            </div>
+        </div>
+
+        <!-- Music Glassmorphism overlay -->
+        <div class="music-overlay" id="musicOverlay"></div>
+
+        <!-- Centered Music Player Modal -->
+        <div class="music-modal" id="musicModal">
+            <div class="music-modal-container">
+                <!-- Image on left -->
+                <img src="Music Player/Music Player.png" alt="Music Player Graphic" class="music-player-img">
+
+                <!-- Custom UI Card on right (Glassmorphism) -->
+                <div class="music-card-glass">
+                    <!-- Vinyl overlaps left side -->
+                    <div class="vinyl-record" id="vinylRecord">
+                        <div class="vinyl-grooves"></div>
+                        <div class="vinyl-label">
+                            <div class="vinyl-hole"></div>
+                        </div>
+                    </div>
+
+                    <!-- Top text area -->
+                    <div class="music-info">
+                        <h3 class="music-title">ABSTRACT SOUNDS</h3>
+                        <p class="music-artist">RXMII</p>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom controls area -->
+                    <div class="music-controls-bar">
+                        <svg class="control-btn" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                            <line x1="5" y1="19" x2="5" y2="5"></line>
+                        </svg>
+
+                        <div class="play-btn" id="playBtn">
+                            <svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <svg class="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                style="display:none;">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                        </div>
+
+                        <svg class="control-btn" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                            <line x1="19" y1="5" x2="19" y2="19"></line>
+                        </svg>
+
+                        <div style="flex:1"></div>
+
+                        <svg class="control-btn volume-btn" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-close-hint">Click outside to close</div>
+        </div>
+
+        <!-- Fullscreen Flash -->
+        <div class="camera-flash" id="cameraFlash"></div>
+        <canvas id="cameraCanvas" style="display: none;"></canvas>
+
+        <!-- Draggable Sticky Notes -->
+        <div class="hero-cards" id="heroCards">
+            <!-- Note 1 -->
+            <div class="hero-card sticky-note note-yellow bg-lines"
+                style="--card-rotate: -4deg; left: 12%; bottom: 12%;" data-draggable>
+                <div class="note-tape tape-1"></div>
+                <h3 class="note-title">Currently</h3>
+                <p class="note-text">UX Designer @<br>Polestar Analytics</p>
+            </div>
+
+            <!-- Note 2 -->
+            <div class="hero-card sticky-note note-blue" style="--card-rotate: 3deg; left: 32%; bottom: 6%;"
+                data-draggable>
+                <div class="note-tape tape-2"></div>
+                <h3 class="note-title">Education</h3>
+                <p class="note-text">B.Tech — DTU<br>New Delhi, India</p>
+            </div>
+
+            <!-- Note 3 -->
+            <div class="hero-card sticky-note note-green bg-dots" style="--card-rotate: -2deg; left: 52%; bottom: 15%;"
+                data-draggable>
+                <div class="note-tape tape-3"></div>
+                <h3 class="note-title">Certified</h3>
+                <p class="note-text">UX — IIT Guwahati<br>UX Design — Microsoft</p>
+            </div>
+
+            <!-- Note 4 -->
+            <div class="hero-card sticky-note note-pink" style="--card-rotate: 5deg; left: 72%; bottom: 8%;"
+                data-draggable>
+                <div class="note-tape tape-1"></div>
+                <h3 class="note-title">Philosophy</h3>
+                <p class="note-text">"I design decisions,<br>not just screens."</p>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll-indicator" id="scrollIndicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- MY APPROACH -->
+    <section class="approach-section" id="about">
+        <div class="section-container">
+            
+            <!-- Top: About & Pull Quote -->
+            <div class="approach-top-grid">
+                <div class="approach-about">
+                    <h2 class="section-heading" data-reveal>My approach</h2>
+                    <p class="approach-para" data-reveal>I'm a designer who gets uncomfortable when things are too vague — so I ask questions until they're not. I work best at the intersection of messy problems and real people, and I've been learning to use AI tools not as shortcuts, but as thinking partners. I'm 1–3 years in, which means I'm fast, curious, and not yet precious about how things should be done.</p>
+                </div>
+                <div class="approach-quote-wrap" data-reveal>
+                    <blockquote class="approach-quote">"I'd rather find out a concept is wrong in week one than beautiful and wrong at launch."</blockquote>
+                </div>
+            </div>
+
+            <!-- Middle: Principles (draggable sticky notes) -->
+            <div class="principles-notes-container" id="principleNotes">
+                <div class="sticky-note principle-sticky note-yellow bg-lines"
+                    style="--card-rotate: -3deg;" data-principle-drag>
+                    <div class="note-tape tape-2"></div>
+                    <h3 class="note-title">Principle 01</h3>
+                    <p class="note-text">Start with the problem, not the brief</p>
+                </div>
+
+                <div class="sticky-note principle-sticky note-blue"
+                    style="--card-rotate: 4deg;" data-principle-drag>
+                    <div class="note-tape tape-1"></div>
+                    <h3 class="note-title">Principle 02</h3>
+                    <p class="note-text">Make something ugly fast</p>
+                </div>
+
+                <div class="sticky-note principle-sticky note-green bg-dots"
+                    style="--card-rotate: -2deg;" data-principle-drag>
+                    <div class="note-tape tape-3"></div>
+                    <h3 class="note-title">Principle 03</h3>
+                    <p class="note-text">Bring people in early</p>
+                </div>
+
+                <div class="sticky-note principle-sticky note-pink"
+                    style="--card-rotate: 3deg;" data-principle-drag>
+                    <div class="note-tape tape-1"></div>
+                    <h3 class="note-title">Principle 04</h3>
+                    <p class="note-text">Use AI as a collaborator, not a crutch</p>
+                </div>
+
+                <div class="sticky-note principle-sticky note-yellow bg-lines"
+                    style="--card-rotate: -5deg;" data-principle-drag>
+                    <div class="note-tape tape-2"></div>
+                    <h3 class="note-title">Principle 05</h3>
+                    <p class="note-text">Leave things documented</p>
+                </div>
+            </div>
+
+            <!-- Bottom: Interactive Capabilities Matrix -->
+            <div class="capabilities-header" data-reveal>
+                <p class="capabilities-hint">CLICK ANY SKILL TO READ MORE</p>
+            </div>
+            
+            <div class="capabilities-matrix">
+                <!-- Column 1: PRODUCT & UX -->
+                <div class="capability-col" data-reveal>
+                    <h3 class="capability-col-title">PRODUCT & UX</h3>
+                    <p class="capability-col-subtitle">From fuzzy problem to clear design direction.</p>
+                    <button class="capability-card" data-skill-id="0">Problem framing</button>
+                    <button class="capability-card" data-skill-id="1">Systems thinking</button>
+                    <button class="capability-card" data-skill-id="2">Information architecture</button>
+                    <button class="capability-card" data-skill-id="3">Usability thinking</button>
+                    <button class="capability-card growing" data-skill-id="4">Still growing: quant research</button>
+                </div>
+                
+                <!-- Column 2: CRAFT & PROTOTYPING -->
+                <div class="capability-col" data-reveal>
+                    <h3 class="capability-col-title">CRAFT & PROTOTYPING</h3>
+                    <p class="capability-col-subtitle">How the thinking becomes something real.</p>
+                    <button class="capability-card" data-skill-id="5">Figma & high-fidelity prototyping</button>
+                    <button class="capability-card" data-skill-id="6">Visual hierarchy</button>
+                    <button class="capability-card" data-skill-id="7">Prototyping to think</button>
+                    <button class="capability-card" data-skill-id="8">Sweat the details</button>
+                    <button class="capability-card growing" data-skill-id="9">Still growing: design systems</button>
+                </div>
+                
+                <!-- Column 3: AI & NEW PRACTICE -->
+                <div class="capability-col" data-reveal>
+                    <h3 class="capability-col-title">AI & NEW PRACTICE</h3>
+                    <p class="capability-col-subtitle">Enough to work with it honestly, not just talk about it.</p>
+                    <button class="capability-card" data-skill-id="10">AI prompt design</button>
+                    <button class="capability-card" data-skill-id="11">Evaluating AI-generated UI</button>
+                    <button class="capability-card" data-skill-id="12">Human-AI workflow design</button>
+                    <button class="capability-card" data-skill-id="13">Conversational UX</button>
+                    <button class="capability-card growing" data-skill-id="14">Still growing: AI engineering basics</button>
+                </div>
+                
+                <!-- Column 4: COLLABORATION -->
+                <div class="capability-col" data-reveal>
+                    <h3 class="capability-col-title">COLLABORATION</h3>
+                    <p class="capability-col-subtitle">Design doesn't ship alone.</p>
+                    <button class="capability-card" data-skill-id="15">Cross-functional work</button>
+                    <button class="capability-card" data-skill-id="16">Presenting decisions</button>
+                    <button class="capability-card" data-skill-id="17">Giving and taking feedback</button>
+                    <button class="capability-card" data-skill-id="18">Documentation & handoff</button>
+                </div>
+            </div>
+
+            <!-- Skill Detail Modal (quote-selector style) -->
+            <div class="skill-overlay" id="skillOverlay"></div>
+            <div class="skill-detail-modal" id="skillDetailModal">
+                <div class="skill-detail-inner">
+                    <span class="skill-detail-category" id="skillDetailCategory">PRODUCT & UX</span>
+                    <h2 class="skill-detail-title" id="skillDetailTitle">Problem framing</h2>
+                    <div class="skill-detail-divider"></div>
+                    <p class="skill-detail-desc" id="skillDetailDesc">Finding the right question before solving anything</p>
+                </div>
+                <div class="skill-detail-nav">
+                    <button class="skill-detail-nav-btn" id="skillPrevBtn" aria-label="Previous skill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="skill-detail-nav-btn" id="skillNextBtn" aria-label="Next skill">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DESIGN SHOWCASE -->
+    <section class="playground-section" id="playground-showcase">
+        <div class="pg-scroll-wrap">
+            <!-- Header overlay on top of diagonal canvas -->
+            <div class="playground-header">
+                <span class="playground-label">Design Showcase</span>
+                <h2 class="playground-title">Flowcraft — <em>User Journey</em></h2>
+                <p class="playground-subtitle">A 15-screen product flow designed to transform complex onboarding into an
+                    intuitive, guided experience.</p>
+            </div>
+
+            <div class="pg-diagonal-canvas">
+                <!-- Row 1 (moves left on scroll) -->
+                <div class="pg-row" data-direction="-1">
+                    <div class="pg-row-inner">
+                        <div class="pg-card"><img src="Screen 1.png" alt="Screen 1"></div>
+                        <div class="pg-card"><img src="Screen 2.png" alt="Screen 2"></div>
+                        <div class="pg-card"><img src="Screen 3.png" alt="Screen 3"></div>
+                        <div class="pg-card"><img src="Screen 4.png" alt="Screen 4"></div>
+                        <div class="pg-card"><img src="Screen 5.png" alt="Screen 5"></div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="pg-card"><img src="Screen 1.png" alt="Screen 1"></div>
+                        <div class="pg-card"><img src="Screen 2.png" alt="Screen 2"></div>
+                        <div class="pg-card"><img src="Screen 3.png" alt="Screen 3"></div>
+                        <div class="pg-card"><img src="Screen 4.png" alt="Screen 4"></div>
+                        <div class="pg-card"><img src="Screen 5.png" alt="Screen 5"></div>
+                    </div>
+                </div>
+
+                <!-- Row 2 (moves right on scroll) -->
+                <div class="pg-row" data-direction="1">
+                    <div class="pg-row-inner">
+                        <div class="pg-card"><img src="Screen 6.png" alt="Screen 6"></div>
+                        <div class="pg-card"><img src="Screen 7.png" alt="Screen 7"></div>
+                        <div class="pg-card"><img src="Screen 8.png" alt="Screen 8"></div>
+                        <div class="pg-card"><img src="Screen 9.png" alt="Screen 9"></div>
+                        <div class="pg-card"><img src="Screen 10.png" alt="Screen 10"></div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="pg-card"><img src="Screen 6.png" alt="Screen 6"></div>
+                        <div class="pg-card"><img src="Screen 7.png" alt="Screen 7"></div>
+                        <div class="pg-card"><img src="Screen 8.png" alt="Screen 8"></div>
+                        <div class="pg-card"><img src="Screen 9.png" alt="Screen 9"></div>
+                        <div class="pg-card"><img src="Screen 10.png" alt="Screen 10"></div>
+                    </div>
+                </div>
+
+                <!-- Row 3 (moves left on scroll) -->
+                <div class="pg-row" data-direction="-1">
+                    <div class="pg-row-inner">
+                        <div class="pg-card"><img src="Screen 11.png" alt="Screen 11"></div>
+                        <div class="pg-card"><img src="Screen 12.png" alt="Screen 12"></div>
+                        <div class="pg-card"><img src="Screen 13.png" alt="Screen 13"></div>
+                        <div class="pg-card"><img src="Screen 14.png" alt="Screen 14"></div>
+                        <div class="pg-card"><img src="Screen 15.png" alt="Screen 15"></div>
+                        <!-- Duplicates for seamless loop -->
+                        <div class="pg-card"><img src="Screen 11.png" alt="Screen 11"></div>
+                        <div class="pg-card"><img src="Screen 12.png" alt="Screen 12"></div>
+                        <div class="pg-card"><img src="Screen 13.png" alt="Screen 13"></div>
+                        <div class="pg-card"><img src="Screen 14.png" alt="Screen 14"></div>
+                        <div class="pg-card"><img src="Screen 15.png" alt="Screen 15"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLACEHOLDER SHOWCASE 2 -->
+    <section class="playground-section" id="showcase-2">
+        <div class="pg-scroll-wrap">
+            <div class="playground-header">
+                <span class="playground-label">Design Showcase</span>
+                <h2 class="playground-title">Prep OS — <em>User Interface</em></h2>
+                <p class="playground-subtitle">Exploring the interface and experience for Prep OS.</p>
+            </div>
+            <div class="pg-diagonal-canvas">
+                <div class="pg-row" data-direction="-1">
+                    <div class="pg-row-inner">
+                        <div class="pg-card"><img src="Prep OS/Prep OS 1.png" alt="Screen 1"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 2.png" alt="Screen 2"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 3.png" alt="Screen 3"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 4.png" alt="Screen 4"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 5.png" alt="Screen 5"></div>
+                        <!-- Duplicates -->
+                        <div class="pg-card"><img src="Prep OS/Prep OS 1.png" alt="Screen 1"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 2.png" alt="Screen 2"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 3.png" alt="Screen 3"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 4.png" alt="Screen 4"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 5.png" alt="Screen 5"></div>
+                    </div>
+                </div>
+                <div class="pg-row" data-direction="1">
+                    <div class="pg-row-inner">
+                        <div class="pg-card"><img src="Prep OS/Prep OS 6.png" alt="Screen 6"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 7.png" alt="Screen 7"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 8.png" alt="Screen 8"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 9.png" alt="Screen 9"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 1.png" alt="Screen 10"></div>
+                        <!-- Duplicates -->
+                        <div class="pg-card"><img src="Prep OS/Prep OS 6.png" alt="Screen 6"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 7.png" alt="Screen 7"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 8.png" alt="Screen 8"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 9.png" alt="Screen 9"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 1.png" alt="Screen 10"></div>
+                    </div>
+                </div>
+                <div class="pg-row" data-direction="-1">
+                    <div class="pg-row-inner">
+                        <div class="pg-card"><img src="Prep OS/Prep OS 2.png" alt="Screen 11"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 3.png" alt="Screen 12"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 4.png" alt="Screen 13"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 5.png" alt="Screen 14"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 6.png" alt="Screen 15"></div>
+                        <!-- Duplicates -->
+                        <div class="pg-card"><img src="Prep OS/Prep OS 2.png" alt="Screen 11"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 3.png" alt="Screen 12"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 4.png" alt="Screen 13"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 5.png" alt="Screen 14"></div>
+                        <div class="pg-card"><img src="Prep OS/Prep OS 6.png" alt="Screen 15"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK / CASE STUDIES -->
+    <section class="work" id="work">
+        <div class="section-container">
+            <div class="work-header" data-reveal>
+                <div>
+                    <span class="section-label">Selected work</span>
+                    <h2 class="section-heading" style="margin-bottom: 0;">Work that ships.</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="badges-container" data-reveal>
+            <!-- SVG Defs for metallic clasp gradients -->
+            <svg width="0" height="0" style="position:absolute;">
+                <defs>
+                    <linearGradient id="metalShine" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#e8e8e8" />
+                        <stop offset="25%" stop-color="#c0c0c0" />
+                        <stop offset="50%" stop-color="#f0f0f0" />
+                        <stop offset="75%" stop-color="#a8a8a8" />
+                        <stop offset="100%" stop-color="#d0d0d0" />
+                    </linearGradient>
+                    <linearGradient id="metalDark" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#999" />
+                        <stop offset="50%" stop-color="#777" />
+                        <stop offset="100%" stop-color="#aaa" />
+                    </linearGradient>
+                    <filter id="metalShadow">
+                        <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.3" />
+                    </filter>
+                </defs>
+            </svg>
+
+            <div class="badges-row" id="badgesRow">
+
+                <!-- Badge 1 -->
+                <div class="badge-unit" style="--tilt: -4deg; --sway-delay: 0s;" data-draggable>
+                    <div class="lanyard-strap strap-indigo"></div>
+                    <svg class="clasp-svg" width="36" height="52" viewBox="0 0 36 52" fill="none">
+                        <!-- D-Ring -->
+                        <ellipse cx="18" cy="10" rx="8" ry="8" stroke="url(#metalShine)" stroke-width="3.5" fill="none"
+                            filter="url(#metalShadow)" />
+                        <!-- Clasp body -->
+                        <rect x="11" y="16" width="14" height="8" rx="2" fill="url(#metalShine)"
+                            filter="url(#metalShadow)" />
+                        <!-- Lobster arm left -->
+                        <path d="M13 24 C13 32, 11 36, 14 40 Q16 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <!-- Lobster arm right -->
+                        <path d="M23 24 C23 32, 25 36, 22 40 Q20 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <!-- Spring lever -->
+                        <line x1="18" y1="24" x2="18" y2="36" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                        <!-- Bottom pivot -->
+                        <circle cx="18" cy="44" r="2.5" fill="url(#metalShine)" filter="url(#metalShadow)" />
+                        <!-- Pin -->
+                        <line x1="18" y1="46" x2="18" y2="51" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <a href="#" class="badge-card badge-indigo">
+                        <div class="badge-hole"></div>
+                        <div class="badge-top-meta">
+                            <span class="badge-label-sm">CASE STUDY</span>
+                            <span class="badge-label-sm">01</span>
+                        </div>
+                        <div class="badge-content">
+                            <span class="badge-category">Enterprise AI Platform</span>
+                            <h3 class="badge-project-name">Deep Dive<br>Console</h3>
+                            <p class="badge-role">UX Design · Workflow Design</p>
+                        </div>
+                        <div class="badge-footer">
+                            <span class="badge-company">Polestar Analytics</span>
+                            <span class="badge-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Badge 2 -->
+                <div class="badge-unit" style="--tilt: 2deg; --sway-delay: -1.5s;" data-draggable>
+                    <div class="lanyard-strap strap-charcoal"></div>
+                    <svg class="clasp-svg" width="36" height="52" viewBox="0 0 36 52" fill="none">
+                        <ellipse cx="18" cy="10" rx="8" ry="8" stroke="url(#metalShine)" stroke-width="3.5" fill="none"
+                            filter="url(#metalShadow)" />
+                        <rect x="11" y="16" width="14" height="8" rx="2" fill="url(#metalShine)"
+                            filter="url(#metalShadow)" />
+                        <path d="M13 24 C13 32, 11 36, 14 40 Q16 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <path d="M23 24 C23 32, 25 36, 22 40 Q20 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <line x1="18" y1="24" x2="18" y2="36" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                        <circle cx="18" cy="44" r="2.5" fill="url(#metalShine)" filter="url(#metalShadow)" />
+                        <line x1="18" y1="46" x2="18" y2="51" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <a href="#" class="badge-card badge-slate">
+                        <div class="badge-hole"></div>
+                        <div class="badge-top-meta">
+                            <span class="badge-label-sm">CASE STUDY</span>
+                            <span class="badge-label-sm">02</span>
+                        </div>
+                        <div class="badge-content">
+                            <span class="badge-category">FinOps · Healthcare</span>
+                            <h3 class="badge-project-name">Enterprise<br>Dashboards</h3>
+                            <p class="badge-role">Dashboard Design · Data UX</p>
+                        </div>
+                        <div class="badge-footer">
+                            <span class="badge-company">Polestar Analytics</span>
+                            <span class="badge-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Badge 3 -->
+                <div class="badge-unit" style="--tilt: -2deg; --sway-delay: -0.8s;" data-draggable>
+                    <div class="lanyard-strap strap-cream"></div>
+                    <svg class="clasp-svg" width="36" height="52" viewBox="0 0 36 52" fill="none">
+                        <ellipse cx="18" cy="10" rx="8" ry="8" stroke="url(#metalShine)" stroke-width="3.5" fill="none"
+                            filter="url(#metalShadow)" />
+                        <rect x="11" y="16" width="14" height="8" rx="2" fill="url(#metalShine)"
+                            filter="url(#metalShadow)" />
+                        <path d="M13 24 C13 32, 11 36, 14 40 Q16 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <path d="M23 24 C23 32, 25 36, 22 40 Q20 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <line x1="18" y1="24" x2="18" y2="36" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                        <circle cx="18" cy="44" r="2.5" fill="url(#metalShine)" filter="url(#metalShadow)" />
+                        <line x1="18" y1="46" x2="18" y2="51" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <a href="#" class="badge-card badge-pearl">
+                        <div class="badge-hole"></div>
+                        <div class="badge-top-meta">
+                            <span class="badge-label-sm">CASE STUDY</span>
+                            <span class="badge-label-sm">03</span>
+                        </div>
+                        <div class="badge-content">
+                            <span class="badge-category">UI/UX Design</span>
+                            <h3 class="badge-project-name">Freelance<br>Marketplace</h3>
+                            <p class="badge-role">Web Design · Digital Assets</p>
+                        </div>
+                        <div class="badge-footer">
+                            <span class="badge-company">Lawtrades</span>
+                            <span class="badge-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Badge 4 -->
+                <div class="badge-unit" style="--tilt: 5deg; --sway-delay: -2.2s;" data-draggable>
+                    <div class="lanyard-strap strap-emerald"></div>
+                    <svg class="clasp-svg" width="36" height="52" viewBox="0 0 36 52" fill="none">
+                        <ellipse cx="18" cy="10" rx="8" ry="8" stroke="url(#metalShine)" stroke-width="3.5" fill="none"
+                            filter="url(#metalShadow)" />
+                        <rect x="11" y="16" width="14" height="8" rx="2" fill="url(#metalShine)"
+                            filter="url(#metalShadow)" />
+                        <path d="M13 24 C13 32, 11 36, 14 40 Q16 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <path d="M23 24 C23 32, 25 36, 22 40 Q20 43, 18 43" stroke="url(#metalShine)" stroke-width="3"
+                            fill="none" stroke-linecap="round" filter="url(#metalShadow)" />
+                        <line x1="18" y1="24" x2="18" y2="36" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                        <circle cx="18" cy="44" r="2.5" fill="url(#metalShine)" filter="url(#metalShadow)" />
+                        <line x1="18" y1="46" x2="18" y2="51" stroke="url(#metalDark)" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <a href="#" class="badge-card badge-forest">
+                        <div class="badge-hole"></div>
+                        <div class="badge-top-meta">
+                            <span class="badge-label-sm">CASE STUDY</span>
+                            <span class="badge-label-sm">04</span>
+                        </div>
+                        <div class="badge-content">
+                            <span class="badge-category">Brand & Marketing</span>
+                            <h3 class="badge-project-name">Regimen<br>Lab</h3>
+                            <p class="badge-role">Branding · Visual Design</p>
+                        </div>
+                        <div class="badge-footer">
+                            <span class="badge-company">Science Skincare</span>
+                            <span class="badge-arrow">→</span>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BADGE DRAG & DROP — pointer events on .badge-card -->
+    <script>
+        (function () {
+            // State: ordered list of badge-unit elements
+            var row = document.getElementById('badgesRow');
+            if (!row) return;
+            var units = Array.prototype.slice.call(row.querySelectorAll('.badge-unit'));
+            if (!units.length) return;
+
+            var dragUnit = null;      // the .badge-unit being dragged
+            var dragCard = null;      // the .badge-card that received pointerdown
+            var offsetX = 0, offsetY = 0;  // pointer offset from unit top-left
+            var startRect = null;     // unit's bounding rect at drag start
+            var isDragging = false;
+
+            // Attach pointer events to each .badge-card
+            units.forEach(function (unit) {
+                var card = unit.querySelector('.badge-card');
+                if (!card) return;
+
+                card.addEventListener('pointerdown', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Capture pointer so pointermove fires even outside element
+                    card.setPointerCapture(e.pointerId);
+
+                    dragUnit = unit;
+                    dragCard = card;
+                    isDragging = false;
+
+                    // Get unit's current position
+                    startRect = unit.getBoundingClientRect();
+
+                    // Offset = pointer position relative to unit's top-left
+                    offsetX = e.clientX - startRect.left;
+                    offsetY = e.clientY - startRect.top;
+
+                    // Kill the CSS sway animation & remove tilt
+                    unit.style.animation = 'none';
+                    unit.style.transition = 'none';
+                    unit.style.transform = 'rotate(0deg)';
+                    unit.style.zIndex = '100';
+                    card.style.cursor = 'grabbing';
+                });
+
+                card.addEventListener('pointermove', function (e) {
+                    if (dragUnit !== unit) return;
+                    e.preventDefault();
+
+                    var dx = e.clientX - startRect.left - offsetX;
+                    var dy = e.clientY - startRect.top - offsetY;
+
+                    if (!isDragging && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
+                        isDragging = true;
+                        unit.classList.add('dragging');
+                    }
+
+                    if (isDragging) {
+                        // Translate the entire unit (card + lanyard follow together)
+                        unit.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) rotate(0deg) scale(1.03)';
+                    }
+                });
+
+                card.addEventListener('pointerup', function (e) {
+                    if (dragUnit !== unit) return;
+
+                    card.style.cursor = '';
+
+                    if (isDragging) {
+                        unit.classList.remove('dragging');
+
+                        // Block the click event on the link
+                        card.addEventListener('click', function blocker(ev) {
+                            ev.preventDefault();
+                            ev.stopPropagation();
+                            card.removeEventListener('click', blocker, true);
+                        }, { capture: true, once: true });
+
+                        // Keep the card where it was dropped
+                        // Just clean up z-index and restore transition, but keep transform
+                        unit.style.zIndex = '';
+                        unit.style.transition = '';
+                        // Transform stays as-is (card stays at dropped position)
+
+                    } else {
+                        // No drag — just restore everything
+                        unit.style.animation = '';
+                        unit.style.transform = '';
+                        unit.style.transition = '';
+                        unit.style.zIndex = '';
+                    }
+
+                    dragUnit = null;
+                    dragCard = null;
+                    isDragging = false;
+                });
+
+                card.addEventListener('pointercancel', function () {
+                    if (dragUnit === unit) {
+                        unit.classList.remove('dragging');
+                        unit.style.animation = '';
+                        unit.style.transform = '';
+                        unit.style.transition = '';
+                        unit.style.zIndex = '';
+                        card.style.cursor = '';
+                        dragUnit = null;
+                        dragCard = null;
+                        isDragging = false;
+                    }
+                });
+            });
+
+            console.log('[BadgeDrag] Pointer events attached to ' + units.length + ' cards');
+        })();
+    </script>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="contact-bg-clip"></div>
+        <div class="section-container contact-inner">
+            <span class="section-label" data-reveal>Get in touch</span>
+            <h2 class="contact-heading" data-reveal>Let's build something that actually makes sense.</h2>
+            <p class="contact-body" data-reveal>Whether it's a product challenge, a design role, or just a conversation
+                about UX — I'm up for it.</p>
+
+            <div class="contact-actions" data-reveal>
+                <a href="mailto:kumarrajan0810@gmail.com" class="btn btn-primary btn-lg">
+                    <span>Say hello</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="btn btn-secondary btn-lg">
+                    <span>LinkedIn</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                </a>
+                <a href="/resume.pdf" class="btn btn-secondary btn-lg">
+                    <span>Resume</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                </a>
+            </div>
+
+            <a href="mailto:kumarrajan0810@gmail.com" class="contact-email" data-reveal>kumarrajan0810@gmail.com</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="section-container footer-inner">
+            <p class="footer-text">Designed & built by Rajan Kumar · New Delhi, India</p>
+            <p class="footer-year">© 2026</p>
+        </div>
+    </footer>
+
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js?v=3.8"></script>
+    <script src="polaroid.js"></script>
+    <script src="music.js"></script>
+    <script src="robot.js"></script>
+    <script src="quotes.js"></script>
+    <script src="cube-scene.js?v=10" defer></script>
+    <script src="assistant.js" defer></script>
+</body>
+
+</html>
