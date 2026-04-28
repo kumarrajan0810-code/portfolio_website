@@ -621,52 +621,7 @@ gsap.utils.toArray('.skill-pills').forEach(container => {
 
 // Badge drag & drop is now handled inline in index.html
 // ==========================================
-// DIAGONAL SCROLL ANIMATION
-// ==========================================
-function initPlayground() {
-    const sections = document.querySelectorAll('.playground-section');
-    if (!sections.length) return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    sections.forEach(section => {
-        const rows = section.querySelectorAll('.pg-row');
-        if (!rows.length) return;
-
-        rows.forEach(row => {
-            const inner = row.querySelector('.pg-row-inner');
-            const direction = parseInt(row.dataset.direction) || -1;
-            // Move by half the inner width (the duplicate half) for seamless feel
-            const distance = inner.scrollWidth / 2;
-
-            gsap.to(inner, {
-                x: direction * -distance,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top top',
-                    end: '+=200%',
-                    scrub: 1,
-                    pin: false,
-                    invalidateOnRefresh: true
-                }
-            });
-        });
-
-        // Pin the section while scrolling through
-        ScrollTrigger.create({
-            trigger: section,
-            start: 'top top',
-            end: '+=200%',
-            pin: true,
-            pinSpacing: true
-        });
-    });
-}
-
-window.addEventListener('load', () => {
-    initPlayground();
-});
 
 // ==========================================
 // CAPABILITIES MATRIX MODAL
@@ -678,21 +633,21 @@ const capabilitiesData = [
     { category: "PRODUCT & UX", title: "Information architecture", desc: "Making complex things feel obvious. Enterprise platforms deal with dense data, and my job is to translate that density into intuitive structure without dumbing it down." },
     { category: "PRODUCT & UX", title: "Usability thinking", desc: "Catching what breaks before users do. I test concepts when they're still rough, because that's when feedback is most useful and iteration is cheapest." },
     { category: "PRODUCT & UX", title: "Quant research (growing)", desc: "Surveys, metrics, data-led decisions. I'm building fluency in quantitative research methods to complement my qualitative instincts." },
-    
+
     // CRAFT & PROTOTYPING (5-9)
     { category: "CRAFT & PROTOTYPING", title: "Figma & high-fidelity prototyping", desc: "From rough idea to testable prototype. I build in Figma at a level that bridges concept and production, making it easy for developers to pick up." },
     { category: "CRAFT & PROTOTYPING", title: "Visual hierarchy", desc: "What you see first, second, and why. I use scale, contrast, and spacing deliberately so every screen communicates priority clearly." },
     { category: "CRAFT & PROTOTYPING", title: "Prototyping to think", desc: "Using making as a way of figuring things out. I don't wait for the 'right' idea — I prototype multiple concepts early to discover where they break and where they shine." },
     { category: "CRAFT & PROTOTYPING", title: "Sweat the details", desc: "Spacing, type, and the things most people skip. Every pixel, every token, every interaction state matters. I care about the polish because users feel it." },
     { category: "CRAFT & PROTOTYPING", title: "Design systems (growing)", desc: "Tokens, components, at-scale thinking. I'm deepening my understanding of how to build and maintain scalable design systems." },
-    
+
     // AI & NEW PRACTICE (10-14)
     { category: "AI & NEW PRACTICE", title: "AI prompt design", desc: "Writing instructions that shape AI behaviour. I craft prompts that guide AI outputs toward useful, reliable, and contextually appropriate results." },
     { category: "AI & NEW PRACTICE", title: "Evaluating AI-generated UI", desc: "Knowing what to keep, fix, and throw away. Not everything AI generates is usable — I bring the design judgment to curate what actually ships." },
     { category: "AI & NEW PRACTICE", title: "Human-AI workflow design", desc: "Where AI helps and where humans must stay. I think carefully about the line between automation and human agency in every workflow." },
     { category: "AI & NEW PRACTICE", title: "Conversational UX", desc: "Designing for outputs you don't fully control. Chat interfaces, voice flows, and AI assistants require a different design mindset — one I'm actively building." },
     { category: "AI & NEW PRACTICE", title: "AI engineering basics (growing)", desc: "APIs, models, what's actually possible. I'm learning enough about the technical side to have honest conversations with engineers and set realistic expectations." },
-    
+
     // COLLABORATION (15-18)
     { category: "COLLABORATION", title: "Cross-functional work", desc: "Speaking product, dev, and business fluently. I bridge the gap between stakeholders to make sure we're all pulling in the same direction." },
     { category: "COLLABORATION", title: "Presenting decisions", desc: "Showing the why, not just the what. I use prototypes and clear rationale to guide conversations, turning subjective opinions into objective, user-centric decisions." },
@@ -712,7 +667,7 @@ const skillDetailDesc = document.getElementById('skillDetailDesc');
 function updateSkillContent(id) {
     const data = capabilitiesData[id];
     if (!data) return;
-    
+
     // Animate content change
     gsap.to([skillDetailCategory, skillDetailTitle, skillDetailDesc], {
         opacity: 0,
@@ -722,7 +677,7 @@ function updateSkillContent(id) {
             skillDetailCategory.textContent = data.category;
             skillDetailTitle.textContent = data.title;
             skillDetailDesc.textContent = data.desc;
-            
+
             gsap.to([skillDetailCategory, skillDetailTitle, skillDetailDesc], {
                 opacity: 1,
                 y: 0,
@@ -742,7 +697,7 @@ function openSkillDetail(id) {
         skillDetailDesc.textContent = data.desc;
         gsap.set([skillDetailCategory, skillDetailTitle, skillDetailDesc], { opacity: 1, y: 0 });
     }
-    
+
     skillOverlay.classList.add('active');
     skillDetailModal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -780,7 +735,7 @@ if (skillOverlay) {
 
 document.addEventListener('keydown', (e) => {
     if (!skillDetailModal || !skillDetailModal.classList.contains('active')) return;
-    
+
     if (e.key === 'Escape') closeSkillDetail();
     if (e.key === 'ArrowRight') nextSkill();
     if (e.key === 'ArrowLeft') prevSkill();

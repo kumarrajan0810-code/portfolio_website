@@ -343,7 +343,8 @@ body:has(a:hover) .cursor-dot {
     position: relative;
     overflow: hidden;
     display: inline-block;
-    height: 16px; /* exactly one line — clips the second label */
+    height: 16px;
+    /* exactly one line — clips the second label */
 }
 
 .nav-link-text {
@@ -1363,10 +1364,21 @@ body.cube-hover .cursor-dot {
     box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.03);
 }
 
-.principle-sticky.note-yellow::after { border-color: transparent transparent #e6d391 transparent; }
-.principle-sticky.note-blue::after { border-color: transparent transparent #b5cddf transparent; }
-.principle-sticky.note-green::after { border-color: transparent transparent #b8d6b6 transparent; }
-.principle-sticky.note-pink::after { border-color: transparent transparent #e6b0ba transparent; }
+.principle-sticky.note-yellow::after {
+    border-color: transparent transparent #e6d391 transparent;
+}
+
+.principle-sticky.note-blue::after {
+    border-color: transparent transparent #b5cddf transparent;
+}
+
+.principle-sticky.note-green::after {
+    border-color: transparent transparent #b8d6b6 transparent;
+}
+
+.principle-sticky.note-pink::after {
+    border-color: transparent transparent #e6b0ba transparent;
+}
 
 [data-theme="dark"] .principle-sticky {
     filter: brightness(0.9) contrast(1.1);
@@ -2359,7 +2371,7 @@ body.cube-hover .cursor-dot {
         grid-template-columns: repeat(2, 1fr);
         gap: 40px;
     }
-    }
+}
 }
 
 @media (max-width: 768px) {
@@ -2550,9 +2562,11 @@ body.cube-hover .cursor-dot {
    ========================================== */
 
 .playground-section {
-    position: relative;
+    position: sticky;
+    top: 0;
     width: 100%;
     z-index: 10;
+    background: var(--bg);
 }
 
 /* ── Grid-paper background ── */
@@ -2656,13 +2670,30 @@ body.cube-hover .cursor-dot {
 .pg-row {
     overflow: hidden;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .pg-row-inner {
     display: flex;
     gap: 20px;
+    padding-right: 20px;
     width: max-content;
     will-change: transform;
+    animation: pgScroll 25s linear infinite;
+}
+
+[data-direction="-1"] .pg-row-inner {
+    animation-direction: normal;
+}
+
+[data-direction="1"] .pg-row-inner {
+    animation-direction: reverse;
+}
+
+@keyframes pgScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-25%); }
 }
 
 /* ── Individual Cards ── */
@@ -3111,12 +3142,10 @@ body.cube-hover .cursor-dot {
     height: 140px;
     filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
     transition: filter 0.3s, transform 0.3s;
-    mix-blend-mode: multiply;
 }
 
 [data-theme="dark"] .robot-sprite {
-    mix-blend-mode: screen;
-    filter: invert(1) drop-shadow(0 15px 25px rgba(255, 255, 255, 0.1));
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
 }
 
 /* --- Robot Overlay & Modal --- */
@@ -3188,12 +3217,10 @@ body.cube-hover .cursor-dot {
     background-position: center;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    mix-blend-mode: multiply;
 }
 
 [data-theme="dark"] .robot-option {
-    mix-blend-mode: screen;
-    filter: invert(1);
+    /* Transparent PNGs look good natively */
 }
 
 .robot-option:hover {
@@ -3201,7 +3228,7 @@ body.cube-hover .cursor-dot {
 }
 
 [data-theme="dark"] .robot-option:hover {
-    filter: invert(1) brightness(1.2);
+    filter: brightness(1.2);
 }
 
 /* ==========================================
@@ -3756,199 +3783,4 @@ body.cube-hover .cursor-dot {
     gap: 12px;
     align-items: flex-start;
     flex: 1;
-}
-
-.hero-ai-pill-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    height: 36px;
-    position: relative;
-    z-index: 10;
-}
-
-.hero-ai-pill {
-    position: relative;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 18px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    width: 96px; /* idle width */
-    display: flex;
-    align-items: center;
-}
-
-[data-theme="light"] .hero-ai-pill {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-.hero-ai-pill:hover,
-.hero-ai-pill:focus-within {
-    width: 320px;
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(94, 129, 255, 0.5);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(94, 129, 255, 0.2);
-}
-
-[data-theme="light"] .hero-ai-pill:hover,
-[data-theme="light"] .hero-ai-pill:focus-within {
-    background: rgba(0, 0, 0, 0.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 0 0 2px rgba(94, 129, 255, 0.2);
-}
-
-.ai-pill-idle {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-[data-theme="light"] .ai-pill-idle {
-    color: rgba(0, 0, 0, 0.7);
-}
-
-.hero-ai-pill:hover .ai-pill-idle,
-.hero-ai-pill:focus-within .ai-pill-idle {
-    opacity: 0;
-    transform: translateX(-10px);
-    pointer-events: none;
-}
-
-.ai-pill-active {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    transform: translateX(10px);
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transition-delay: 0.05s;
-    padding: 0 4px 0 16px;
-}
-
-.hero-ai-pill:hover .ai-pill-active,
-.hero-ai-pill:focus-within .ai-pill-active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: all;
-}
-
-.ai-pill-active input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    padding-right: 8px;
-    font-family: var(--font-main);
-    width: 100%;
-}
-
-[data-theme="light"] .ai-pill-active input {
-    color: #111;
-}
-
-.ai-pill-active input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
-
-[data-theme="light"] .ai-pill-active input::placeholder {
-    color: rgba(0, 0, 0, 0.4);
-}
-
-.ai-pill-active button {
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
-    background: #5e81ff;
-    color: #fff;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: all 0.2s ease;
-}
-
-.ai-pill-active button:hover {
-    background: #4a6aeb;
-    transform: scale(1.05);
-}
-
-.hero-ai-reset {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-[data-theme="light"] .hero-ai-reset {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.1);
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.hero-ai-reset:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-[data-theme="light"] .hero-ai-reset:hover {
-    background: rgba(0, 0, 0, 0.08);
-    color: #111;
-}
-
-.hero-ai-reset.hidden {
-    display: none;
-}
-
-/* AI Typewriter Effect */
-.ai-typewriter-text {
-    display: inline-block;
-}
-
-.ai-typewriter-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1.2em;
-    background: #5e81ff;
-    vertical-align: middle;
-    margin-left: 2px;
-    animation: blink 1s step-end infinite;
-}
-
-@media (max-width: 768px) {
-    .hero-ai-pill:hover,
-    .hero-ai-pill:focus-within {
-        width: 100%;
-        min-width: 260px;
-    }
 }
