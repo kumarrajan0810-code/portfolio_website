@@ -480,25 +480,7 @@ body:has(a:hover) .cursor-dot {
     transform: rotate(0);
 }
 
-/* --- Navigation CTA --- */
 
-.nav-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: var(--accent);
-    color: white;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.nav-cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px var(--accent-glow-strong);
-}
 
 .nav-toggle {
     display: none;
@@ -2417,11 +2399,13 @@ body.cube-hover .cursor-dot {
     .hero-container {
         grid-template-columns: 1fr;
         gap: 32px;
+        margin-top: 180px;
     }
 
     .hero-content {
         gap: 24px;
         margin-left: 0;
+        margin-top: 160px;
         align-items: center;
         text-align: center;
     }
@@ -2554,16 +2538,7 @@ body.cube-hover .cursor-dot {
     background: rgba(6, 6, 6, 0.98);
 }
 
-/* Nav CTA button */
-[data-theme="dark"] .nav-cta-btn {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.12);
-    color: #F8F9FA;
-}
 
-[data-theme="dark"] .nav-cta-btn:hover {
-    background: rgba(255, 255, 255, 0.14);
-}
 
 /* ==========================================
    PLAYGROUND SHOWCASE
