@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const quote = option.getAttribute('data-quote');
 
             // Update the main quote image src
-            currentQuoteImg.src = `Quotes/${quote}.png`;
+            currentQuoteImg.src = `/quotes/${quote}.png`;
 
             // Close the modal gracefully
             quoteOverlay.classList.remove('active');
