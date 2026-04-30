@@ -927,6 +927,18 @@ body.cube-hover .cursor-dot {
     opacity: 0.6;
 }
 
+/* ── Photographer & Quote Row Container ── */
+.hero-bottom-row {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.hero-bottom-row > * {
+    pointer-events: auto;
+}
+
 /* ── Draggable Sticky Notes ── */
 .hero-cards {
     position: absolute;
@@ -2389,11 +2401,18 @@ body.cube-hover .cursor-dot {
         align-items: flex-start;
         padding-top: 140px;
         justify-content: center;
+        min-height: 1400px;
     }
 
     .hero-robot-wrap,
     .hero-headphones-wrap {
         top: 120px !important;
+    }
+
+    /* Constrain cube to first viewport area only */
+    .cube-container {
+        height: 100vh;
+        bottom: auto;
     }
 
     .hero-container {
@@ -2457,6 +2476,104 @@ body.cube-hover .cursor-dot {
 
     .hero-scroll-indicator {
         display: none;
+    }
+
+    .hero-hint {
+        bottom: auto;
+        top: 520px;
+        right: 10px;
+    }
+
+    .hero-right {
+        position: static;
+        height: 0;
+    }
+
+    /* Sticky Notes: 2x2 grid below the cube */
+    .hero-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        top: 800px;
+        bottom: auto;
+        left: 24px;
+        right: 24px;
+    }
+
+    .hero-card.sticky-note {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 150px !important;
+        height: 150px !important;
+        opacity: 1;
+        margin: 0 auto;
+    }
+
+    /* Photographer & Quote below sticky notes */
+    .hero-bottom-row {
+        top: 1150px;
+        bottom: auto;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+    }
+
+    .hero-photographer-wrap {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        top: auto !important;
+        right: auto !important;
+        width: 160px;
+    }
+
+    .hero-quote-wrap {
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    .hero-quote-wrap img {
+        max-width: 160px;
+    }
+
+    /* Camera modal: responsive on mobile */
+    .large-camera-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .large-camera-img {
+        width: 260px !important;
+    }
+
+    .camera-lens-external {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Music modal: responsive on mobile */
+    .music-modal-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .music-player-img {
+        width: 300px !important;
+    }
+
+    .music-card-glass {
+        width: 280px !important;
+        height: auto !important;
+        min-height: 160px;
     }
 }
 
@@ -2900,7 +3017,6 @@ body.cube-hover .cursor-dot {
     height: auto;
     display: block;
     -webkit-user-drag: none;
-    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
 }
 
 .camera-lens-external {
@@ -2950,6 +3066,54 @@ body.cube-hover .cursor-dot {
     font-weight: 500;
     opacity: 0.7;
     letter-spacing: 0.05em;
+}
+
+/* --- Lens Zoom Control --- */
+.lens-zoom-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.zoom-label {
+    font-size: 14px;
+    user-select: none;
+}
+
+.lens-zoom-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 140px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+.lens-zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(108, 92, 231, 0.4);
+}
+
+.lens-zoom-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(108, 92, 231, 0.4);
 }
 
 /* --- Flash Animation --- */
@@ -3123,7 +3287,6 @@ body.cube-hover .cursor-dot {
     background-position: center;
     width: 140px;
     height: 140px;
-    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
     transition: filter 0.3s, transform 0.3s;
 }
 
@@ -3499,7 +3662,6 @@ body.cube-hover .cursor-dot {
 .music-player-img {
     width: 300px;
     height: auto;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
     -webkit-user-drag: none;
 }
 

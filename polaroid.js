@@ -10,11 +10,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const cameraVideo = document.getElementById('cameraVideo');
     const cameraFlash = document.getElementById('cameraFlash');
     const cameraCanvas = document.getElementById('cameraCanvas');
+    const lensZoomSlider = document.getElementById('lensZoomSlider');
+    const lensElement = document.querySelector('.camera-lens-external');
     
     let isCameraActive = false;
     let localStream = null;
 
     if (!photographerWrap) return;
+
+    // Lens zoom slider — simulates camera FOV (ultrawide ↔ telephoto)
+    if (lensZoomSlider && cameraVideo) {
+        lensZoomSlider.addEventListener('input', (e) => {
+            // Slider value maps to video scale: 1x = ultrawide, 3x = telephoto
+            const scale = parseFloat(e.target.value);
+            cameraVideo.style.transform = `scaleX(-1) scale(${scale})`;
+        });
+        // Prevent slider/control clicks from triggering camera snap
+        lensZoomSlider.addEventListener('click', (e) => e.stopPropagation());
+        lensZoomSlider.addEventListener('pointerdown', (e) => e.stopPropagation());
+        const zoomControl = document.querySelector('.lens-zoom-control');
+        if (zoomControl) {
+            zoomControl.addEventListener('click', (e) => e.stopPropagation());
+        }
+    }
 
     photographerWrap.addEventListener('click', async () => {
         if (!isCameraActive) {
