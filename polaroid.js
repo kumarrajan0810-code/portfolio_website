@@ -57,10 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function stopCamera() {
+        if (localStream) {
+            localStream.getTracks().forEach(track => track.stop());
+            localStream = null;
+        }
+        cameraVideo.srcObject = null;
+        isCameraActive = false;
+    }
+
     // Close the modal when clicking the overlay
     cameraOverlay.addEventListener('click', () => {
         cameraOverlay.classList.remove('active');
         largeCameraModal.classList.remove('active');
+        stopCamera();
     });
 
     // Clicking the camera snaps the photo
@@ -70,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Auto close modal to let them see and drag the picture!
             cameraOverlay.classList.remove('active');
             largeCameraModal.classList.remove('active');
+            stopCamera();
         }
     });
 
@@ -124,8 +135,18 @@ document.addEventListener('DOMContentLoaded', () => {
         snapshotImg.src = dataUrl;
         snapshotImg.className = 'polaroid-snapshot';
         
+        const dateStr = new Date().toLocaleString('en-US', { 
+            month: 'short', day: 'numeric', year: 'numeric', 
+            hour: 'numeric', minute: '2-digit' 
+        });
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'polaroid-date-text';
+        textDiv.innerText = dateStr;
+        
         innerFrame.appendChild(snapshotImg);
         photoDiv.appendChild(innerFrame);
+        photoDiv.appendChild(textDiv);
         
         // --- Action Buttons ---
         const actionsDiv = document.createElement('div');
@@ -139,10 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Stop drag propagation on buttons
         downloadBtn.addEventListener('pointerdown', e => e.stopPropagation());
-        downloadBtn.addEventListener('click', (e) => {
+        downloadBtn.addEventListener('click', async (e) => {
             e.stopPropagation();
+            
+            // Generate full polaroid rendering (including frame and text)
+            const fullImageUrl = await generateFullPolaroid(dataUrl, dateStr, randomRotate);
+            
             const a = document.createElement('a');
-            a.href = dataUrl;
+            a.href = fullImageUrl;
             a.download = `Memory_${Date.now()}.png`;
             document.body.appendChild(a);
             a.click();
@@ -283,3 +308,80 @@ document.addEventListener('DOMContentLoaded', () => {
         element.addEventListener('pointercancel', release);
     }
 });
+
+function generateFullPolaroid(imgSrc, textStr, rotationDeg = 0) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 4x scale for very high resolution download
+            const scale = 4;
+            const pWidth = 240 * scale;
+            const pHeight = 276 * scale;
+            
+            // Force rotation to 0 for a clean, straight downloaded image
+            const finalRotation = 0;
+            
+            // Bounding box for straight image
+            const bboxWidth = pWidth;
+            const bboxHeight = pHeight;
+            
+            // Add margin exclusively for the drop shadow
+            const paddingX = 40 * scale;
+            const paddingY = 40 * scale;
+            
+            canvas.width = bboxWidth + paddingX * 2;
+            canvas.height = bboxHeight + paddingY * 2;
+            
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(finalRotation * Math.PI / 180);
+            
+            // Enhance rendering quality
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
+            // Draw polaroid paper (white background)
+            ctx.fillStyle = '#ffffff';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+            ctx.shadowBlur = 25 * scale;
+            ctx.shadowOffsetY = 8 * scale;
+            ctx.fillRect(-pWidth / 2, -pHeight / 2, pWidth, pHeight);
+            
+            // Reset shadow
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+            
+            // Draw inner frame
+            const padX = 14 * scale;
+            const padTop = 14 * scale;
+            const innerW = 212 * scale;
+            const innerH = 212 * scale;
+            
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(-pWidth / 2 + padX, -pHeight / 2 + padTop, innerW, innerH);
+            
+            // Draw the webcam image (cropped 1:1)
+            const minDim = Math.min(img.width, img.height);
+            const sx = (img.width - minDim) / 2;
+            const sy = (img.height - minDim) / 2;
+            
+            ctx.drawImage(img, sx, sy, minDim, minDim, -pWidth / 2 + padX, -pHeight / 2 + padTop, innerW, innerH);
+            
+            // Draw Date Text using Playfair Display Italic
+            ctx.fillStyle = '#666666';
+            ctx.font = `italic 600 ${14 * scale}px "Playfair Display", serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            const textY = -pHeight / 2 + padTop + innerH + (50 * scale) / 2;
+            ctx.fillText(textStr, 0, textY);
+            
+            // Export as transparent PNG
+            resolve(canvas.toDataURL('image/png', 1.0));
+        };
+        img.src = imgSrc;
+    });
+}

@@ -2559,22 +2559,6 @@ body.cube-hover .cursor-dot {
         width: 200px;
         height: 200px;
     }
-
-    /* Music modal: responsive on mobile */
-    .music-modal-container {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .music-player-img {
-        width: 300px !important;
-    }
-
-    .music-card-glass {
-        width: 280px !important;
-        height: auto !important;
-        min-height: 160px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -3179,6 +3163,20 @@ body.cube-hover .cursor-dot {
     -webkit-user-drag: none;
 }
 
+.polaroid-date-text {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    pointer-events: none;
+}
+
 /* --- Polaroid Actions --- */
 .polaroid-actions {
     position: absolute;
@@ -3606,7 +3604,6 @@ body.cube-hover .cursor-dot {
     filter: invert(1);
 }
 
-/* --- Overlay & Modal --- */
 .music-overlay {
     position: fixed;
     inset: 0;
@@ -3662,6 +3659,7 @@ body.cube-hover .cursor-dot {
 .music-player-img {
     width: 300px;
     height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
     -webkit-user-drag: none;
 }
 
@@ -3916,6 +3914,213 @@ body.cube-hover .cursor-dot {
     transform: scale(1.1);
     background: var(--accent);
     color: #fff;
+}
+
+/* ==========================================================================
+   INLINE HERO AI PILL
+   ========================================================================== */
+
+.hero-bio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.hero-ai-pill-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 36px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-ai-pill {
+    position: relative;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 96px; /* idle width */
+    display: flex;
+    align-items: center;
+}
+
+[data-theme="light"] .hero-ai-pill {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.hero-ai-pill:hover,
+.hero-ai-pill:focus-within {
+    width: 320px;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(94, 129, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(94, 129, 255, 0.2);
+}
+
+[data-theme="light"] .hero-ai-pill:hover,
+[data-theme="light"] .hero-ai-pill:focus-within {
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 0 0 2px rgba(94, 129, 255, 0.2);
+}
+
+.ai-pill-idle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+[data-theme="light"] .ai-pill-idle {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.hero-ai-pill:hover .ai-pill-idle,
+.hero-ai-pill:focus-within .ai-pill-idle {
+    opacity: 0;
+    transform: translateX(-10px);
+    pointer-events: none;
+}
+
+.ai-pill-active {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition-delay: 0.05s;
+    padding: 0 4px 0 16px;
+}
+
+.hero-ai-pill:hover .ai-pill-active,
+.hero-ai-pill:focus-within .ai-pill-active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+}
+
+.ai-pill-active input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    padding-right: 8px;
+    font-family: var(--font-main);
+    width: 100%;
+}
+
+[data-theme="light"] .ai-pill-active input {
+    color: #111;
+}
+
+.ai-pill-active input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="light"] .ai-pill-active input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.ai-pill-active button {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background: #5e81ff;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.ai-pill-active button:hover {
+    background: #4a6aeb;
+    transform: scale(1.05);
+}
+
+.hero-ai-reset {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+[data-theme="light"] .hero-ai-reset {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-ai-reset:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+[data-theme="light"] .hero-ai-reset:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: #111;
+}
+
+.hero-ai-reset.hidden {
+    display: none;
+}
+
+/* AI Typewriter Effect */
+.ai-typewriter-text {
+    display: inline-block;
+}
+
+.ai-typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: #5e81ff;
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+}
+
+@media (max-width: 768px) {
+    .hero-ai-pill:hover,
+    .hero-ai-pill:focus-within {
+        width: 100%;
+        min-width: 260px;
+    }
 }
 
 /* ==========================================================================
