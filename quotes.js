@@ -1,6 +1,6 @@
 /**
  * Quotes Interaction Logic
- * Lets users pick a motivational quote (q1.png - q24.png) to display on the hero section.
+ * Lets users pick a motivational quote (q1.webp - q24.webp) to display on the hero section.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const quote = option.getAttribute('data-quote');
 
             // Update the main quote image src
-            currentQuoteImg.src = `/quotes/${quote}.png`;
+            currentQuoteImg.src = `/quotes/${quote}.webp`;
 
             // Close the modal gracefully
             quoteOverlay.classList.remove('active');

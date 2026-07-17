@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const a = document.createElement('a');
             a.href = fullImageUrl;
-            a.download = `Memory_${Date.now()}.png`;
+            a.download = `Memory_${Date.now()}.webp`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);

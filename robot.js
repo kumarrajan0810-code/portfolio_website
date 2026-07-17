@@ -1,6 +1,6 @@
 /**
  * Robot Avatar Interaction Logic
- * Uses individual face images (R1.png - R9.png) from the Robot folder.
+ * Uses individual face images (R1.webp - R9.webp) from the Robot folder.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const face = option.getAttribute('data-face');
 
             // Update the main robot's background image
-            currentRobot.style.backgroundImage = `url('Robot/${face}.png')`;
+            currentRobot.style.backgroundImage = `url('Robot/${face}.webp')`;
 
             // Close the modal gracefully
             robotOverlay.classList.remove('active');
